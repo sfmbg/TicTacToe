@@ -1,17 +1,20 @@
 package cz;
+import cz.Character;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Game game = new Game();
+        game.printBoard(game.board);
+        // Example moves
+        game.move(0, 0, Character.X);
+        game.move(1, 1, Character.O);
+        game.move(2, 2, Character.X);
+        game.printBoard(game.board);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Check if X is the winner
+        if (game.checkWinner(Character.X)) {
+            System.out.println("X is the winner!");
+        } else {
+            System.out.println("No winner yet.");
         }
-    }
-}
+    }}
