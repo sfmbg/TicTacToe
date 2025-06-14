@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class Game {
     private Scanner sc = new Scanner(System.in);
     private Character[][] board = new Character[3][3];
+    public int lastX = -1;
+    public int lastY = -1;
+
 
     public Game() {
         initializeEmptyBoard();
@@ -31,6 +34,9 @@ public class Game {
             return false; // Cell already occupied
         }
         board[x][y] = character;
+
+        lastX = x;
+        lastY = y;
         return true; // Move successful
     }
 
