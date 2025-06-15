@@ -28,7 +28,7 @@ public class ServerMain {
             while (!game.makeMove(currentPlayer)) {
                 System.out.println("Invalid. Try again.");
             }
-            game.printBoard();
+//            game.printBoard();
             out.println(gameToLastMove(game)); // send last move
 
             if (game.checkWinner(currentPlayer) || game.isDraw()) break;
@@ -37,6 +37,7 @@ public class ServerMain {
             System.out.println("Waiting for opponent...");
             String input = in.readLine();
             applyMoveFromString(game, input, opponentPlayer);
+            game.printBoard();
 
             if (game.checkWinner(opponentPlayer) || game.isDraw()) {
                 game.printBoard();
@@ -49,18 +50,9 @@ public class ServerMain {
     }
 
     private static String gameToLastMove(Game game) {
-        Character[][] b = game.getBoard();
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                if (b[x][y] != Character.EMPTY) {
-                    if (x == lastX && y == lastY) {
-                        return x + "," + y;
-                    }
-                }
-            }
-        }
-        return "";
+        return game.lastX + "," + game.lastY;
     }
+
 
     private static void applyMoveFromString(Game game, String move, Character c) {
         int[] xy = game.parseInputToCoordinates(move);
@@ -68,6 +60,5 @@ public class ServerMain {
             game.getBoard()[xy[0]][xy[1]] = c;
         }
     }
-    private static int lastX, lastY;
 
 }
